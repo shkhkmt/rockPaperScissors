@@ -1,3 +1,4 @@
+
 function getComputerChoice() {
     let choice = Math.random();
     if (choice <= (1/3)) {
@@ -21,45 +22,18 @@ function getHumanChoice() {
         return 'Please try again';
     }
 }
-
-/*
-Logic to play a single round
-
-GET the computer's choice
-GET the human choice.
-convert human choice into lower-case
-
-CASE
-1)
-IF computer choice is Rock & human choice is Paper
-	RETURN You win! humanChoice beats computerChoice !
-ELSE IF computer choice is Rock & human choice is Scissor
-	RETURN You lose! computerChoice beats humanChoice !
-2)
-ELSE IF computer choice is Paper & human choice is Rock
-	RETURN You win! humanChoice beats computerChoice !
-ELSE IF computer choice is Paper & human choice is Scissor
-	RETURN You lose! computerChoice beats humanChoice !
-3)
-ELSE IF computer choice is Scissor & human choice is Paper
-	RETURN You win! humanChoice beats computerChoice !
-ELSE IF computer choice is Scissor & human choice is Rock
-	RETURN You lose! computerChoice beats humanChoice !
-ELSE
-	RETURN Draw! Play another round.
-*/
+// setting global variables for functions.
 
 const humanChoice = String(getHumanChoice());
 const computerChoice = String(getComputerChoice());
 let humanScore = 0;
 let computerScore = 0;
 
+// setting constants to return console output. and logic for playing a round.
 function playRound(humanChoice, computerChoice) {
-/*setting output values for each possible game state*/
     const playerWin = `You win! ${humanChoice} beats ${computerChoice};`;
     const playerLoss = `You lose! ${computerChoice} beats ${humanChoice};`;
-/*logic for deciding the winner. note that you can use || to seperate conditions if they produce the
- * same output*/
+
     if ((humanChoice == 'rock'  && computerChoice == 'scissors') ||
         (humanChoice == 'scissors' && computerChoice == 'paper') ||
         (humanChoice == 'paper' && computerChoice == 'rock')) {
@@ -78,24 +52,13 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-/* logic for playing the whole game.
- * LOOP while player score and computer score are both less than 5.
- * SET variables as arguments for function
- * CALL playRound function and set each players choice as an argument
- * return Round result
- * CASE IF humanScore is equal to 5
- * return 'you Win'
- * ELSE IF computerScore is equal to 5
- * return 'you Lose'
- */
-
+//  Looping the game to stop when the first player gets to 5.
 function playGame() {
     while (humanScore < 5 && computerScore <  5) {
         let humanChoice = getHumanChoice();
         let computerChoice = getComputerChoice();
 
-
-        let roundResult = playRound(humanChoice, computerChoice);
+        let roundResult = playRound(humanChoice, computerChoice); // storing round result from playRound() and printing to console.
         console.log(roundResult);
 
         console.log(`Current Score: Human ${humanScore} - Computer ${computerScore}`);

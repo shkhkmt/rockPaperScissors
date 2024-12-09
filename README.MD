@@ -12,8 +12,8 @@ IF the number is more than 2/3,
 
 ### Logic to get the human Choice 
 
-OBTAIN input from the user 
-compare input to saved variables. 
+GET input from the user 
+Compare input to saved variables. 
 store input to variable 
 
 ### Logic to play a single round 
@@ -41,7 +41,15 @@ ELSE IF computer choice is Scissor & human choice is Rock
 ELSE 
 	RETURN Draw! Play another round. 
 
-#### Logic to store the winner of a round and increment.
 
-If You win! humanChoice beats computerChoice !
-    
+### logic for playing the whole game.
+
+ * LOOP while player score and computer score are both less than 5.
+ * SET variables as arguments for function
+ * CALL playRound function and set each players choice as an argument
+ * return the winner of the round to the user and the current score. 
+ * return Round result
+ * CASE IF humanScore is equal to 5
+ * return 'you Win'
+ * ELSE IF computerScore is equal to 5
+ * return 'you Lose'
