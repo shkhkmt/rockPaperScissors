@@ -1,7 +1,7 @@
 
 function getComputerChoice() {
     let choice = Math.random();
-    if (choice <= (1/3)) {
+    if (choice <= (1/3)) { // this can be an arrow function
         return 'rock';
     } else if (choice >= (2/3)) {
     return 'paper';
@@ -72,7 +72,6 @@ function playGame() {
         return `You lose! Human: ${humanScore} - Computer: ${computerScore};`;
     }
 }
-
 
 
 
