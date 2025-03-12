@@ -1,52 +1,116 @@
-#content {
+#content { 
   display: flex; 
-  width: 100%;
   flex-direction: column; 
-  position: absolute; 
-  margin-top: 40px; 
-  margin-bottom: 20px; 
-  align-items: center; 
+  align-items: center;
+  flex: 1; 
+  min-height: 100vh; 
 }
 
 header {
-  font-size: 36px;
+  font-size: -webkit-xxx-large;
   display: flex;  
   justify-content: center;
   align-items: flex-start;  
-  border-bottom: 2px solid hsl(0, 100%, 100%);
-  padding-bottom: 1em; 
+  padding-bottom: 0.5em; 
+  font-weight: 900;
+  align-self: center; 
 }
 
-body {
+body, 
+html {
   display: flex; 
-  background-color: black; 
+  background-color: hsl(0, 0%, 0%); 
   font-family: silkscreen; 
-  color: white;
+  color: hsl(0, 100%, 100%);
+  margin: 0; 
+  height: auto;  
+  width: 100%; 
+}
+
+button { 
+  display: flex; 
 }
 
 .game {
   display: flex; 
-  justify-content: space-around; 
-  border: 2px solid hsl(0, 100%, 100%); 
-  width: 100%;
-  height: 600px; 
-  gap: 1em; 
+  padding: 2em;  
+  margin: 2em auto; 
+  justify-content: center; 
+  flex-wrap: wrap;  
+  flex: 1; 
 }
 
 .rules {
   display: flex; 
-  align-self: flex-start; 
+  align-self: auto; 
   flex-direction: column; 
+  font-size: larger;
+  font-weight: 700;  
 }
 
 #human {
   display: flex; 
-  flex-direction: row; 
-} 
+  flex-direction: column; 
+  font-size: larger; 
+  font-weight: 700;   
+  padding: 2em; 
+  border: 2px solid hsl(0, 100%, 100%);
+  justify-content: space-around;; 
+}
+
+#humanIcon {
+  display: flex; 
+  justify-content: center; 
+  align-self: anchor-center; 
+  padding: 0.25em; 
+}
+
+#humanActions {
+  display: flex; 
+  align-items: anchor-center;
+  gap: 1em;  
+  flex-shrink: 1; 
+}
+
+#hmnScr {
+  display: flex; 
+  justify-content: center; 
+  font-size: x-large;
+  margin-top: 0; 
+  margin-bottom: 2em;  
+}
+
+#rbtScr {
+  display: flex; 
+  justify-content: center; 
+  font-size: x-large; 
+  margin-top: 0;
+  margin-bottom: 2em;  
+}
+
+#robotIcon {
+  display: flex; 
+  justify-content: center; 
+  align-self: anchor-center;
+  padding: .25em;  
+}
 
 #robot { 
   display: flex; 
+  flex-direction: column; 
+  font-size: larger; 
+  font-weight: 700;
+  padding: 2em; 
+  border: 2px solid hsl(0, 100%, 100%);
+  justify-content: space-around; 
 }
+
+#robotActions {
+  display: flex; 
+  align-items: anchor-center; 
+  gap: 1em; 
+}
+
 
 img {
   display: flex; 
@@ -54,45 +118,70 @@ img {
   background: white;
   border: none; 
   height: auto;
-  width: 200px;
+  width: 125px;
+  padding 2em; 
+  flex-shrink: 1; 
   }
 
-  button {
-    all: unset; 
-  }
-
-  button:focus { 
-    outline: revert: 
-  }
-
-#hrck {
-  display: flex;
-  flex-shrink: 1; 
+#imgRck {
+  display: block; ; 
+  align-self: center;
+  padding: 0.5em; 
 }
 
-#hppr { 
-  display:flex; 
-  flex-shrink: 1; 
+#imgRck:hover {
+  filter: none; 
 }
 
+#imgPpr:hover {
+  filter: none; 
+}
 
-#hscrs {
+#imgScrs:hover { 
+  filter: none; 
+}
+
+#imgScrs:active {
+  background: hsl(100 100% 50%); 
+}
+
+#imgRck:active {
+  background: hsl(100 100% 50%); 
+}
+
+#imgPpr:active {
+  background: hsl(100 100% 50%); 
+}
+
+#imgPpr {
+  display: block; 
+  align-self: center; 
+  padding: 0.5em;
+}
+
+#imgScrs {
+  display: block; 
+  align-self: center;
+  padding: 0.5em;
+}
+
+button {
+  all: unset; 
+  cursor: pointer; 
+}
+
+button:focus { 
+  outline: revert: 
+}
+
+footer { 
+  bottom: 0; 
+  width: 100%; 
+  height: 50px; 
   display: flex; 
-  flex-shrink: 1; 
-} 
-
-#rrck {
-  display: flex; 
+  justify-content: center; 
+  align-items: flex-end; 
+  color: hsl(0 0 85%);
+  border-top: 1px solid  hsl(0 0 85%); 
 }
-
-#rppr {
-  display: flex; 
-  flex-shrink: 1; 
-}
-
-#rscrs {
-  display: flex; 
-  flex-shrink: 1; 
-}
-
 
