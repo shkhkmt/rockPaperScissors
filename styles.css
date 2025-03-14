@@ -48,6 +48,13 @@ button {
   font-weight: 700;  
 }
 
+#roundResult {
+  display: flex; 
+  margin: 1em auto;
+  color: hsl(56, 100%, 50%);; 
+  font-size: xx-large; 
+}
+
 #human {
   display: flex; 
   flex-direction: column; 

@@ -1,3 +1,5 @@
+// UI 
+
 const linkElement = document.createElement('link'); 
 linkElement.rel = 'stylesheet'; 
 linkElement.type = 'text/css'; 
@@ -112,6 +114,17 @@ document.getElementById('robotActions').appendChild(robotRock);
 document.getElementById('robotActions').appendChild(robotPaper); 
 document.getElementById('robotActions').appendChild(robotScissors);
 
+document.querySelector('.rules'); 
+let rslts = document.createElement('div'); 
+rslts.id = 'rslts'; 
+rules.appendChild(rslts); 
+document.querySelector('.rslts'); 
+
+let roundResult = document.createElement('p');
+roundResult.id = "roundResult"; 
+rslts.appendChild(roundResult); 
+
+// GAME  
 
 function getComputerChoice() {
     let choice = Math.random();
@@ -124,10 +137,47 @@ function getComputerChoice() {
     }
 }
 
-let computerChoice = getComputerChoice(); 
-let humanChoice; 
+// Global variables 
 
-humanActions.addEventListener('click', (event) => {
+let humanScore = 0;
+let computerScore = 0;
+let humanChoice; 
+let computerChoice;
+let result; 
+let playerWin = `You win this round. Play again.`
+let playerLoss =  `You lose this round. Play again.` 
+
+
+function updateResult(result) {
+    document.querySelector('#hmnScr');
+    hmnScr.textContent = `Human Score: ${humanScore}`; 
+    document.querySelector('#rbtScr'); 
+    rbtScr.textContent = `Robot Score: ${computerScore}`;
+    document.querySelector('#roundResult'); 
+    roundResult.textContent = result; 
+}
+
+function playRound(humanChoice, computerChoice) {
+  if ((humanChoice == 'rock'  && computerChoice  == 'scissors') ||
+        (humanChoice == 'scissors' && computerChoice == 'paper') ||
+        (humanChoice == 'paper' && computerChoice == 'rock')) {
+    humanScore++;
+    result = playerWin; 
+    }
+  else if ((humanChoice == 'paper' && computerChoice == 'scissors') ||
+        (humanChoice == 'scissors' && computerChoice == 'rock') ||
+        (humanChoice == 'rock' && computerChoice == 'paper')) {
+    computerScore++;
+    result = playerLoss;
+    }
+  else {
+    result = 'Draw! Play another round'
+    }
+  console.log(result);
+  updateResult(result); 
+}
+
+function handleClick(event) {
   let target = event.target; 
 
   switch(target.id) {
@@ -143,54 +193,21 @@ humanActions.addEventListener('click', (event) => {
     default:
       return null; 
   }
-});
-
-let humanScore = 0;
-let computerScore = 0;
-
-// setting constants to return console output. and logic for playing a round.
-
-function playRound(humanChoice, computerChoice) {
-    const playerWin = `You win! ${humanChoice} beats ${computerChoice};`;
-    const playerLoss = `You lose! ${computerChoice} beats ${humanChoice};`;
-
-    if ((humanChoice == 'rock'  && computerChoice == 'scissors') ||
-        (humanChoice == 'scissors' && computerChoice == 'paper') ||
-        (humanChoice == 'paper' && computerChoice == 'rock')) {  
-      humanScore++;
-      hmnRslt.appendChild(playerWin); 
-      return playerWin; 
-    }
-
-    else if ((humanChoice == 'paper' && computerChoice == 'scissors') ||
-        (humanChoice == 'scissors' && computerChoice == 'rock') ||
-        (humanChoice == 'rock' && computerChoice == 'paper')) {
-        computerScore++;
-        return playerLoss;
-    }
-    else {
-        return 'Draw! Play another round'
-    }
+  computerChoice = getComputerChoice();
+  playRound(humanChoice, computerChoice);
+  console.log(humanChoice); 
+  console.log(computerChoice); 
 }
 
-let result = playRound(humanChoice, computerChoice); 
+human.addEventListener('click', handleClick); 
+
 /*
-function playGame() {
-    while (humanScore < 5 && computerScore <  5) {
-        let computerChoice = getComputerChoice();
-
-        let roundResult = playRound(humanChoice, computerChoice); // storing round result from playRound() and printing to console.
-        console.log(roundResult);
-
-        console.log(`Current Score: Human ${humanScore} - Computer ${computerScore}`);
-    }
-
-    if (humanScore === 5) {
-        return `You win! Human: ${humanScore} - Computer: ${computerScore};`;
-    }
-
-    else if (computerScore === 5){
-        return `You lose! Human: ${humanScore} - Computer: ${computerScore};`;
-    }
-}
-*/ 
+function gameOver(playRound) {
+  if ((humanScore == 5) || (computerScore == 5)) {
+  // remove game Div. 
+    // create new div with H1 element
+    // set text content for new H1 
+    // append H1 to body 
+    // do the same but with a restart button
+  }
+  */
