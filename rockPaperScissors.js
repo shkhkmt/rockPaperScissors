@@ -127,7 +127,9 @@ rslts.appendChild(roundResult);
 // GAME  
 
 function getComputerChoice() {
+    
     let choice = Math.random();
+
     if (choice <= (1/3)) { // this can be an arrow function
         return 'rock';
     } else if (choice >= (2/3)) {
@@ -136,6 +138,7 @@ function getComputerChoice() {
         return 'scissors';
     }
 }
+
 
 // Global variables 
 
@@ -146,19 +149,26 @@ let computerChoice;
 let result; 
 let playerWin = `You win this round. Play again.`
 let playerLoss =  `You lose this round. Play again.` 
-
+let resetBtn; 
 
 function updateResult(result) {
+  
     document.querySelector('#hmnScr');
     hmnScr.textContent = `Human Score: ${humanScore}`; 
     document.querySelector('#rbtScr'); 
     rbtScr.textContent = `Robot Score: ${computerScore}`;
     document.querySelector('#roundResult'); 
     roundResult.textContent = result; 
+
 }
 
+
 function playRound(humanChoice, computerChoice) {
-  if ((humanChoice == 'rock'  && computerChoice  == 'scissors') ||
+  
+  if ((humanScore > 4) || (computerScore > 4)) {
+    gameOver();
+  }
+  else if ((humanChoice == 'rock'  && computerChoice  == 'scissors') ||
         (humanChoice == 'scissors' && computerChoice == 'paper') ||
         (humanChoice == 'paper' && computerChoice == 'rock')) {
     humanScore++;
@@ -173,11 +183,17 @@ function playRound(humanChoice, computerChoice) {
   else {
     result = 'Draw! Play another round'
     }
-  console.log(result);
+  
   updateResult(result); 
+  
+  if (humanScore > 4 || computerScore > 4) {
+    gameOver()
+  }
 }
 
+
 function handleClick(event) {
+  
   let target = event.target; 
 
   switch(target.id) {
@@ -191,23 +207,51 @@ function handleClick(event) {
       humanChoice = 'scissors'; 
       break; 
     default:
-      return null; 
+      return;
   }
+  
   computerChoice = getComputerChoice();
   playRound(humanChoice, computerChoice);
-  console.log(humanChoice); 
-  console.log(computerChoice); 
+
 }
 
-human.addEventListener('click', handleClick); 
-
-/*
-function gameOver(playRound) {
-  if ((humanScore == 5) || (computerScore == 5)) {
-  // remove game Div. 
-    // create new div with H1 element
-    // set text content for new H1 
-    // append H1 to body 
-    // do the same but with a restart button
+function handleReset(event) {
+  
+  if (event.target.id == 'resetBtn') {
+    resetGame();
   }
-  */
+}
+
+content.addEventListener('click', handleClick); 
+
+function gameOver(playRound) {
+
+  let resetDiv = document.createElement('div'); 
+  resetDiv.id = 'resetDiv'; 
+  let resetBtn = document.createElement('button'); 
+  resetBtn.id = 'resetBtn'; 
+  resetBtn.textContent = 'Reset';
+  resetDiv.appendChild(resetBtn); 
+  content.insertBefore(resetDiv, game); 
+
+  if (humanScore > 4) {
+    result = "Game Over! You win."; 
+    } 
+    else if (computerScore > 4) {
+        result = "Game Over! You lose."; 
+    }
+
+  updateResult(result); 
+  resetBtn.addEventListener('click', handleReset); 
+
+}
+
+function resetGame(handleReset) { 
+  content.removeChild(resetDiv); 
+  humanScore = 0; 
+  computerScore = 0; 
+  hmnScr.textContent = `Human Score: ${humanScore}`;
+  rbtScr.textContent = `Robot Score: ${computerScore}`; 
+  result = 'New Game Started...';
+  updateResult(result); 
+}

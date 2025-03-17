@@ -33,7 +33,6 @@ button {
 
 .game {
   display: flex; 
-  padding: 2em;  
   margin: 2em auto; 
   justify-content: center; 
   flex-wrap: wrap;  
@@ -180,6 +179,11 @@ button {
 button:focus { 
   outline: revert: 
 }
+
+button#resetBtn {
+  font-size: larger; 
+  font-weight: 700; 
+} 
 
 footer { 
   bottom: 0; 
