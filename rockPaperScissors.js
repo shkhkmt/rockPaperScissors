@@ -107,8 +107,11 @@ btnPaper.appendChild(imgPpr);
 btnScissors.appendChild(imgScrs); 
 
 let robotRock = btnRock.cloneNode(true); 
-let robotPaper = btnPaper.cloneNode(true); 
-let robotScissors = btnScissors.cloneNode(true); 
+robotRock.id = 'rbtRck'; 
+let robotPaper = btnPaper.cloneNode(true);
+robotPaper.id = 'rbtPpr';
+let robotScissors = btnScissors.cloneNode(true);
+robotScissors.id = 'rbtScrs'; 
 
 document.getElementById('robotActions').appendChild(robotRock); 
 document.getElementById('robotActions').appendChild(robotPaper); 
@@ -243,7 +246,8 @@ function gameOver(playRound) {
 
   updateResult(result); 
   resetBtn.addEventListener('click', handleReset); 
-
+  content.removeEventListener('click', handleClick); 
+  
 }
 
 function resetGame(handleReset) { 
@@ -254,4 +258,5 @@ function resetGame(handleReset) {
   rbtScr.textContent = `Robot Score: ${computerScore}`; 
   result = 'New Game Started...';
   updateResult(result); 
+  content.addEventListener('click', handleClick);
 }
